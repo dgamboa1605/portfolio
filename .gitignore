@@ -1,0 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# VS Code config
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs and runtime files
+*.log
+*.pid
+*.sqlite3
+*.db
+*.db-journal
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Pydantic cache
+__pydantic__/  
+
+# MyPy
+.mypy_cache/
+
+# FastAPI auto-generated docs cache (if used)
+.openapi.json
+
+# Static and media files (if using uploads or static)
+static/
+media/
+
+# IDEs
+.idea/
+*.iml
+
+# Git and environment files
+*.env
+.env.*
+*.bak
+*.swp
+
+# Docker artifacts (if applicable)
+*.tar
+*.lock
