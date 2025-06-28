@@ -23,10 +23,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,            # Solo este origen
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],              # GET, POST, etc.
-    allow_headers=["*"],              # Authorization, Content-Type, etc.
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 Base.metadata.create_all(bind=engine)
