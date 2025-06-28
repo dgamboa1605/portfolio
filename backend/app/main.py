@@ -5,15 +5,29 @@ and includes the API routers for handling project-related endpoints.
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.endpoints import projects
 from app.db.session import engine
 from app.db.base import Base
 from app.core.logger import Logger
 
 
+
 logger = Logger(__name__).get_logger()
 
 app = FastAPI(title="Portfolio API")
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,            # Solo este origen
+    allow_credentials=True,
+    allow_methods=["*"],              # GET, POST, etc.
+    allow_headers=["*"],              # Authorization, Content-Type, etc.
+)
 
 Base.metadata.create_all(bind=engine)
 logger.info("Database tables created.")
