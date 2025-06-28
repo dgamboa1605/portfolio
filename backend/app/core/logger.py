@@ -1,4 +1,6 @@
 import logging
+import os
+
 from logging.handlers import RotatingFileHandler
 from app.core.config import settings
 from typing import Optional
@@ -23,6 +25,10 @@ class Logger:
                 instance._logger.addHandler(console_handler)
 
             if settings.LOG_TO_FILE:
+                log_dir = os.path.dirname(settings.LOG_FILE)
+                if not os.path.exists(log_dir):
+                    os.makedirs(log_dir)
+
                 file_handler = RotatingFileHandler(
                     settings.LOG_FILE, maxBytes=10**6, backupCount=5
                 )
