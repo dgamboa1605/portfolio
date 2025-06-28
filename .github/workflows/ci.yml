@@ -68,11 +68,7 @@ jobs:
           script: |
             cd /home/vagrant/portfolio
             git pull origin main
-
-            # Reinstala dependencias del frontend si cambiaron
             cd frontend
             npm install
             npm run build
-
-            # Reinicia el backend
             sudo systemctl restart backend
