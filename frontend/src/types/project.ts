@@ -1,10 +1,11 @@
 /**
  * Represents a project with basic details.
  */
-export type Project = {
+export interface Project {
   id: number;
   title: string;
   description: string;
   url: string;
   tags: string[];
+  image_url: string;
 };
