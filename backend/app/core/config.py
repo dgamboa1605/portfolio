@@ -7,5 +7,6 @@ class Settings:
     LOG_FORMAT = os.getenv("LOG_FORMAT", "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     LOG_TO_FILE = os.getenv("LOG_TO_FILE", "true").lower() == "true"
     LOG_TO_CONSOLE = os.getenv("LOG_TO_CONSOLE", "true").lower() == "true"
+    UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "uploads")
 
 settings = Settings()

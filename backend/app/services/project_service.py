@@ -46,6 +46,7 @@ class ProjectService:
                     description=getattr(p, "description"),
                     url=getattr(p, "url"),
                     tags=getattr(p, "tags").split(",") if getattr(p, "tags") else [],
+                    image_url=getattr(p, "image_url"),
                 )
                 for p in projects
             ]
@@ -55,19 +56,20 @@ class ProjectService:
             logger.error(f"Error in list_projects: {str(e)}")
             raise
 
-    def create_project(self, project: ProjectIn) -> ProjectOut:
+    def create_project(self, project: ProjectIn, image_url: str = "") -> ProjectOut:
         """
         Creates a new project in the database.
 
         Args:
             project (ProjectIn): The project data to create, validated by the ProjectIn schema.
+            image_url (str): The URL of the project's image, if any.
 
         Returns:
             ProjectOut: The created project as a ProjectOut object.
         """
         logger.info(f"Creating project via service: {project.title}")
         try:
-            db_project = self.repo.create(project)
+            db_project = self.repo.create(project, image_url=image_url)
             result = ProjectOut(
                 id=getattr(db_project, "id"),
                 title=getattr(db_project, "title"),
@@ -78,8 +80,8 @@ class ProjectService:
                     if getattr(db_project, "tags")
                     else []
                 ),
+                image_url=getattr(db_project, "image_url"),
             )
-            logger.debug(f"Project created via service with ID: {result.id}")
             return result
         except Exception as e:
             logger.error(f"Error in create_project: {str(e)}")

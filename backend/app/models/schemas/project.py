@@ -32,6 +32,8 @@ class ProjectOut(ProjectIn):
     """
 
     id: int
+    image_url: str | None = None
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }

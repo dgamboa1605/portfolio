@@ -12,6 +12,7 @@ class ProjectORM(Base):
     """
     ProjectORM is the SQLAlchemy ORM model for the projects table.
     It defines the structure of the projects table in the database.
+
     Attributes:
         id (int): The unique identifier for the project.
         title (str): The title of the project.
@@ -27,3 +28,4 @@ class ProjectORM(Base):
     description = Column(String)
     url = Column(String)
     tags = Column(String)
+    image_url = Column(String)

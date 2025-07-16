@@ -44,12 +44,13 @@ class ProjectRepository:
             logger.error(f"Error fetching projects: {str(e)}")
             raise
 
-    def create(self, project: ProjectIn) -> ProjectORM:
+    def create(self, project: ProjectIn, image_url: str = "") -> ProjectORM:
         """
         Creates a new project in the database.
 
         Args:
             project (ProjectIn): The project data to create, validated by the ProjectIn schema.
+            image_url (str): The URL of the project's image, if any.
 
         Returns:
             ProjectORM: The created project as a ProjectORM object.
@@ -58,7 +59,9 @@ class ProjectRepository:
         try:
             tags_str = ",".join(project.tags)
             db_project = ProjectORM(
-                **project.model_dump(exclude={"tags"}), tags=tags_str
+                **project.model_dump(exclude={"tags"}),
+                tags=tags_str,
+                image_url=image_url,
             )
             self.db.add(db_project)
             self.db.commit()
